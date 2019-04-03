@@ -1,0 +1,12 @@
+{
+  "credentials": {
+    "username": "Your facebook email",
+    "password": "Your facebook password",
+    "folder_name": "Folder name",
+    "messenger_path": "path to conversation example: https://www.facebook.com/messages/t/john.smith.3"
+  },
+  "settings": {
+    "check_stop_every_pic": 0,
+    "start_scrapping_at_pic": 0
+  }
+}
