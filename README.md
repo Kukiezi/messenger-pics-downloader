@@ -9,7 +9,7 @@ Messenger Pics Downloader is a python3 application created with requests and sel
 
 ## Installation
 
-```sh
+```ssh
 git clone https://github.com/Kukiezi/messenger-pics-downloader
 ```
 Go to [chromedriver] and download chromedriver into messenger-pics-downloader. 
