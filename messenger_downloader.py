@@ -13,7 +13,9 @@ from selenium.webdriver.common.keys import Keys
 from downloader import downloadImages
 from fb_login import login
 from menu import menu_loader
-
+from multiprocessing import Pool as ThreadPool 
+from image import Image
+import itertools
 
 def startDownloader():
     # CHECK IF LAUNCHING FROM FOLDER OR NOT
@@ -81,7 +83,7 @@ def startDownloader():
                 print(f"Getting image source: {image_count}")
                 # adding src to list
                 if image_src not in image_links:
-                    image_links.append(image_src)
+                    image_links.append(Image(image_count, image_src))
                     # UNCOMMENT IF YOU WANT ALL THE SOURCES TO BE SAVED IN images.txt FILE
                     # file = open(f"{current_dir}/images.txt", "a")
                     # file.write(image_src + "\n\n")
@@ -136,11 +138,15 @@ def startDownloader():
         data["folder_name"] = "images"
 
     os.makedirs(f"{current_dir}/{data['folder_name']}", exist_ok=True)
-    img_name = 1
+
+    start_time = time.time()
+    pool = ThreadPool()
+    pool.starmap(downloadImages, zip(itertools.repeat(current_dir), itertools.repeat(data["folder_name"]), image_links))
+    print(f"Thread download took: {time.time() - start_time}")
+    start_time = time.time()
     for image in image_links:
-        downloadImages(current_dir, data["folder_name"], img_name, image)
-        print(f"Downloaded image: {img_name}")
-        img_name += 1
+        downloadImages(current_dir, data["folder_name"], image)
+    print(f"Download took: {time.time() - start_time}")
 
     driver.quit()
 
