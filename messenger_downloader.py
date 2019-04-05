@@ -13,9 +13,10 @@ from selenium.webdriver.common.keys import Keys
 from downloader import downloadImages
 from fb_login import login
 from menu import menu_loader
-from multiprocessing import Pool as ThreadPool 
+from multiprocessing import Pool as ThreadPool
 from image import Image
 import itertools
+
 
 def startDownloader():
     # CHECK IF LAUNCHING FROM FOLDER OR NOT
@@ -85,9 +86,9 @@ def startDownloader():
                 if image_src not in image_links:
                     image_links.append(Image(image_count, image_src))
                     # UNCOMMENT IF YOU WANT ALL THE SOURCES TO BE SAVED IN images.txt FILE
-                    # file = open(f"{current_dir}/images.txt", "a")
-                    # file.write(image_src + "\n\n")
-                    # file.close()
+                    file = open(f"{current_dir}/images.txt", "a")
+                    file.write(image_src + "\n\n")
+                    file.close()
                 else:
                     break_rule += 1
                 # go to next image
@@ -139,15 +140,10 @@ def startDownloader():
 
     os.makedirs(f"{current_dir}/{data['folder_name']}", exist_ok=True)
 
-    start_time = time.time()
     pool = ThreadPool()
-    pool.starmap(downloadImages, zip(itertools.repeat(current_dir), itertools.repeat(data["folder_name"]), image_links))
-    print(f"Thread download took: {time.time() - start_time}")
-    start_time = time.time()
-    for image in image_links:
-        downloadImages(current_dir, data["folder_name"], image)
-    print(f"Download took: {time.time() - start_time}")
-
+    pool.starmap(downloadImages, zip(itertools.repeat(current_dir),
+                                     itertools.repeat(data["folder_name"]), image_links))
+    # closing the driver session. Important to not keep drivers open after scrapping                                 
     driver.quit()
 
     print(f"""

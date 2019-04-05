@@ -1,12 +1,12 @@
 {
   "credentials": {
-    "username": "dawidw-k@wp.pl",
-    "password": "Dawid1212!",
-    "folder_name": "Arek",
-    "messenger_path": "https://www.facebook.com/messages/t/arkadiuszpn"
+    "username": "Your facebook email",
+    "password": "Your facebook password",
+    "folder_name": "Folder name",
+    "messenger_path": "path to conversation example: https://www.facebook.com/messages/t/john.smith.3"
   },
   "settings": {
-    "check_stop_every_pic": 100,
+    "check_stop_every_pic": 0,
     "start_scrapping_at_pic": 0
   }
 }
