@@ -59,7 +59,7 @@ example:
     "start_scrapping_at_pic": 200,
   },
 ```
-Above example will skipp to 200th picture and ask You if You want to stop or continue every 50.
+Above example will skip to 200th picture and ask You if You want to stop or continue every 50.
 
 #### Usage
 
