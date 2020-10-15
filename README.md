@@ -1,3 +1,4 @@
+## NOT SUPPORTED ANYMORE
 # Messenger Pics Downloader
 
 Messenger Pics Downloader is a python3 application created with requests and selenium to download all images from specific conversation on messenger.
